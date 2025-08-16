@@ -58,7 +58,7 @@ export default function LocationSearch({ onLocationSelect }) {
     }
 
     return (
-        <div>
+        <div className="search-bar">
             <input
                 type="text"
                 placeholder="Enter city..."
@@ -66,7 +66,7 @@ export default function LocationSearch({ onLocationSelect }) {
                 onChange={(e) => setQuery(e.target.value)}
             />
             {suggestions.length > 0 && (
-                <ul>
+                <ul className="search-suggestions">
                     {suggestions.map((s,i) => (
                         <li 
                             key={i} 

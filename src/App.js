@@ -6,20 +6,26 @@ import WeatherDisplay from './components/WeatherDisplay';
 function App() {
 
   const[selectedLocation, setSelectedLocation] = useState(null);
-  const[showWeather, setShowWeather] = useState(false);
+  const[displayLocation, setDisplayLocation] = useState(null);
 
-  const handleSearch = () => {selectedLocation ? setShowWeather(true) : setShowWeather(false);}
+  const handleSearch = () => {selectedLocation ? setDisplayLocation(selectedLocation) : setDisplayLocation(null)};
 
   return (
     <div className="App">
-      <h1>Weather App</h1>
+      <div className="header">
+        <h1>Weather App</h1>
 
-      <LocationSearch onLocationSelect={(location) => setSelectedLocation(location)}/>
-      <button onClick={handleSearch}>Search</button>
+        <div className="search-container">
+          <LocationSearch onLocationSelect={(location) => setSelectedLocation(location)}/>
+          <button onClick={handleSearch}>Search</button>
+        </div>
 
-      {showWeather && (
-        <WeatherDisplay location={selectedLocation}/>
-      )}
+        <p>Search by city name, zip code, or coordinates...</p>
+      </div>
+
+      {displayLocation && (
+          <WeatherDisplay location={displayLocation}/>
+        )}
     </div>
   );
 }
